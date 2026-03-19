@@ -1,0 +1,1672 @@
+var e=`---
+# Metadata
+meta:
+  id: "canada-crs"
+  version: v2025.03.25
+
+---
+# Form definition for Canada CRS
+form:
+  - key: english
+    type: value
+    values:
+      - "no"
+      - "CELPIP-G"
+      - "IELTS"
+      - "PTE Core"
+    message:
+      - type: error
+        
+        
+
+  - key: english_celpip_speaking_score
+    type: value
+    prerequisites:
+      english: "CELPIP-G"
+    values:
+      - "10-12"
+      - "9"
+      - "8"
+      - "7"
+      - "6"
+      - "5"
+      - "4"
+      - "M, 0-3"
+
+  - key: english_celpip_listening_score
+    type: value
+    prerequisites:
+      english: "CELPIP-G"
+    use: "english_celpip_speaking_score"
+
+  - key: english_celpip_reading_score
+    type: value
+    prerequisites:
+      english: "CELPIP-G"
+    use: "english_celpip_speaking_score"
+
+  - key: english_celpip_writing_score
+    type: value
+    prerequisites:
+      english: "CELPIP-G"
+    use: "english_celpip_speaking_score"
+
+  - key: english_ielts_speaking_score
+    type: value
+    prerequisites:
+      english: "IELTS"
+    values:
+      - "7.5-9.0"
+      - "7.0"
+      - "6.5"
+      - "6.0"
+      - "5.5"
+      - "5.0"
+      - "4.0-4.5"
+      - "0-3.5"
+
+  - key: english_ielts_listening_score
+    type: value
+    prerequisites:
+      english: "IELTS"
+    values:
+      - "8.5-9.0"
+      - "8.0"
+      - "7.5"
+      - "6.0-7.0"
+      - "5.5"
+      - "5.0"
+      - "4.5"
+      - "0-4.0"
+
+  - key: english_ielts_reading_score
+    type: value
+    prerequisites:
+      english: "IELTS"
+    values:
+      - "8.0-9.0"
+      - "7.0-7.5"
+      - "6.5"
+      - "6.0"
+      - "5.0-5.5"
+      - "4.0-4.5"
+      - "3.5"
+      - "0-3.0"
+
+  - key: english_ielts_writing_score
+    type: value
+    prerequisites:
+      english: "IELTS"
+    values:
+      - "7.5-9.0"
+      - "7.0"
+      - "6.5"
+      - "6.0"
+      - "5.5"
+      - "5.0"
+      - "4.0-4.5"
+      - "0-3.5"
+
+  - key: english_pte_speaking_score
+    type: value
+    prerequisites:
+      english: "PTE Core"
+    values:
+      - "89-90"
+      - "84-88"
+      - "76-83"
+      - "68-75"
+      - "59-67"
+      - "51-58"
+      - "42-50"
+      - "0-41"
+
+  - key: english_pte_listening_score
+    type: value
+    prerequisites:
+      english: "PTE Core"
+    values:
+      - "89-90"
+      - "82-88"
+      - "71-81"
+      - "60-70"
+      - "50-59"
+      - "39-49"
+      - "28-38"
+      - "0-27"
+
+  - key: english_pte_reading_score
+    type: value
+    prerequisites:
+      english: "PTE Core"
+    values:
+      - "88-90"
+      - "78-87"
+      - "69-77"
+      - "60-68"
+      - "51-59"
+      - "42-50"
+      - "33-41"
+      - "0-32"
+
+  - key: english_pte_writing_score
+    type: value
+    prerequisites:
+      english: "PTE Core"
+    values:
+      - "90"
+      - "88-89"
+      - "79-87"
+      - "69-78"
+      - "60-68"
+      - "51-59"
+      - "41-50"
+      - "0-40"
+
+  - key: french
+    type: value
+    values:
+      - "no"
+      - "TEF Canada"
+      - "TCF Canada"
+
+  - key: french_tef_speaking_score
+    type: value
+    prerequisites:
+      french: "TEF Canada"
+    values:
+      - "393-450"
+      - "371-392"
+      - "349-370"
+      - "310-348"
+      - "271-309"
+      - "226-270"
+      - "181-225"
+      - "0-180"
+
+  - key: french_tef_listening_score
+    type: value
+    prerequisites:
+      french: "TEF Canada"
+    values:
+      - "316-360"
+      - "298-315"
+      - "280-297"
+      - "249-279"
+      - "217-248"
+      - "181-216"
+      - "145-180"
+      - "0-144"
+
+  - key: french_tef_reading_score
+    type: value
+    prerequisites:
+      french: "TEF Canada"
+    values:
+      - "263-300"
+      - "248-262"
+      - "233-247"
+      - "207-232"
+      - "181-206"
+      - "151-180"
+      - "121-150"
+      - "0-120"
+
+  - key: french_tef_writing_score
+    type: value
+    prerequisites:
+      french: "TEF Canada"
+    values:
+      - "393-450"
+      - "371-392"
+      - "349-370"
+      - "310-348"
+      - "271-309"
+      - "226-270"
+      - "181-225"
+      - "0-180"
+
+  - key: french_tcf_speaking_score
+    type: value
+    prerequisites:
+      french: "TCF Canada"
+    values:
+      - "16-20"
+      - "14-15"
+      - "12-13"
+      - "10-11"
+      - "7-9"
+      - "6"
+      - "4-5"
+      - "0-3"
+
+  - key: french_tcf_listening_score
+    type: value
+    prerequisites:
+      french: "TCF Canada"
+    values:
+      - "549-699"
+      - "523-548"
+      - "503-522"
+      - "458-502"
+      - "398-457"
+      - "369-397"
+      - "331-368"
+      - "0-330"
+
+  - key: french_tcf_reading_score
+    type: value
+    prerequisites:
+      french: "TCF Canada"
+    values:
+      - "549-699"
+      - "524-548"
+      - "499-523"
+      - "453-498"
+      - "406-452"
+      - "375-405"
+      - "342-374"
+      - "0-341"
+
+  - key: french_tcf_writing_score
+    type: value
+    prerequisites:
+      french: "TCF Canada"
+    values:
+      - "16-20"
+      - "14-15"
+      - "12-13"
+      - "10-11"
+      - "7-9"
+      - "6"
+      - "4-5"
+      - "0-3"
+
+  - key: age
+    type: value
+    values:
+      - "17-"
+      - "18"
+      - "19"
+      - "20-29"
+      - "30"
+      - "31"
+      - "32"
+      - "33"
+      - "34"
+      - "35"
+      - "36"
+      - "37"
+      - "38"
+      - "39"
+      - "40"
+      - "41"
+      - "42"
+      - "43"
+      - "44"
+      - "45+"
+
+  - key: with_spouse
+    type: value
+    values:
+      - "yes"
+      - "no"
+
+  - key: spouse_education
+    prerequisites: 
+      with_spouse: "yes"
+    type: value
+    use: "education"
+
+  - key: spouse_language_proficiency
+    prerequisites:
+      with_spouse: "yes"
+    type: value
+    values:
+      - "no"
+      - "CELPIP-G"
+      - "IELTS"
+      - "PTE Core"
+      - "TEF Canada"
+      - "TCF Canada"
+  
+  - key: spouse_english_celpip_speaking_score
+    prerequisites:
+      spouse_language_proficiency: "CELPIP-G"
+    type: value
+    use: "english_celpip_speaking_score"
+
+  - key: spouse_english_celpip_listening_score
+    prerequisites:
+      spouse_language_proficiency: "CELPIP-G"
+    type: value
+    use: "english_celpip_speaking_score"
+
+  - key: spouse_english_celpip_reading_score
+    prerequisites:
+      spouse_language_proficiency: "CELPIP-G"
+    type: value
+    use: "english_celpip_speaking_score"
+
+  - key: spouse_english_celpip_writing_score
+    prerequisites:
+      spouse_language_proficiency: "CELPIP-G"
+    type: value
+    use: "english_celpip_speaking_score"
+
+  - key: spouse_english_ielts_speaking_score
+    prerequisites:
+      spouse_language_proficiency: "IELTS"
+    type: value
+    use: "english_ielts_speaking_score"
+
+  - key: spouse_english_ielts_listening_score
+    prerequisites:
+      spouse_language_proficiency: "IELTS"
+    type: value
+    use: "english_ielts_listening_score"
+
+  - key: spouse_english_ielts_reading_score
+    prerequisites:
+      spouse_language_proficiency: "IELTS"
+    type: value
+    use: "english_ielts_reading_score"
+
+  - key: spouse_english_ielts_writing_score
+    prerequisites:
+      spouse_language_proficiency: "IELTS"
+    type: value
+    use: "english_ielts_writing_score"
+
+  - key: spouse_english_pte_speaking_score
+    prerequisites:
+      spouse_language_proficiency: "PTE Core"
+    type: value
+    use: "english_pte_speaking_score"
+
+  - key: spouse_english_pte_listening_score
+    prerequisites:
+      spouse_language_proficiency: "PTE Core"
+    type: value
+    use: "english_pte_listening_score"
+
+  - key: spouse_english_pte_reading_score
+    prerequisites:
+      spouse_language_proficiency: "PTE Core"
+    type: value
+    use: "english_pte_reading_score"
+
+  - key: spouse_english_pte_writing_score
+    prerequisites:
+      spouse_language_proficiency: "PTE Core"
+    type: value
+    use: "english_pte_writing_score"
+
+  - key: spouse_french_tef_speaking_score
+    prerequisites:
+      spouse_language_proficiency: "TEF Canada"
+    type: value
+    use: "french_tef_speaking_score"
+
+  - key: spouse_french_tef_listening_score
+    prerequisites:
+      spouse_language_proficiency: "TEF Canada"
+    type: value
+    use: "french_tef_listening_score"
+
+  - key: spouse_french_tef_reading_score
+    prerequisites:
+      spouse_language_proficiency: "TEF Canada"
+    type: value
+    use: "french_tef_reading_score"
+
+  - key: spouse_french_tef_writing_score
+    prerequisites:
+      spouse_language_proficiency: "TEF Canada"
+    type: value
+    use: "french_tef_writing_score"
+
+  - key: spouse_french_tcf_speaking_score
+    prerequisites:
+      spouse_language_proficiency: "TCF Canada"
+    type: value
+    use: "french_tcf_speaking_score"
+
+  - key: spouse_french_tcf_listening_score
+    prerequisites:
+      spouse_language_proficiency: "TCF Canada"
+    type: value
+    use: "french_tcf_listening_score"
+
+  - key: spouse_french_tcf_reading_score
+    prerequisites:
+      spouse_language_proficiency: "TCF Canada"
+    type: value
+    use: "french_tcf_reading_score"
+
+  - key: spouse_french_tcf_writing_score
+    prerequisites:
+      spouse_language_proficiency: "TCF Canada"
+    type: value
+    use: "french_tcf_writing_score"
+
+  - key: spouse_canadian_experience
+    prerequisites: 
+      with_spouse: "yes"
+    type: value
+    values:
+      - "<1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5+"
+
+  - key: education
+    type: value
+    values:
+      - "less_than_high_school"
+      - "secondary"
+      - "one_year_college_degree"
+      - "two_year_college_program"
+      - "bachelor_or_three_year_program"
+      - "multiple_degrees"
+      - "master_or_professional_degree"
+      - "doctor"
+
+  - key: canadian_experience
+    type: value
+    values:
+      - "<1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5+"
+
+  - key: foreign_experience
+    type: value
+    values:
+      - "<1"
+      - "1-2"
+      - "3+"
+
+  - key: certificate_of_qualification
+    type: value
+    values:
+      - "yes"
+      - "no"
+
+  - key: with_siblings
+    type: value
+    values:
+      - "yes"
+      - "no"
+
+  - key: with_pnp
+    type: value
+    values:
+      - "yes"
+      - "no"
+
+  - key: post_secondary_education_in_canada
+    type: value
+    values:
+      - "no"
+      - "1-2"
+      - "3+"
+
+---
+# Preprocessing rules for Canada CRS
+preprocess:
+  - key: english_celpip_speaking_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_celpip_speaking_score"
+        - "spouse_english_celpip_speaking_score"
+      outputs: 
+        - "english_speaking_clb"
+        - "spouse_english_speaking_clb"
+      mapping:
+        "10-12": "10"
+        "9": "9"
+        "8": "8"
+        "7": "7"
+        "6": "6"
+        "5": "5"
+        "4": "4"
+        "M, 0-3": "0"
+  - key: english_celpip_listening_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_celpip_listening_score"
+        - "spouse_english_celpip_listening_score"
+      outputs: 
+        - "english_listening_clb"
+        - "spouse_english_listening_clb"
+      mapping:
+        "10-12": "10"
+        "9": "9"
+        "8": "8"
+        "7": "7"
+        "6": "6"
+        "5": "5"
+        "4": "4"
+        "M, 0-3": "0" 
+  - key: english_celpip_reading_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_celpip_reading_score"
+        - "spouse_english_celpip_reading_score"
+      outputs: 
+        - "english_reading_clb"
+        - "spouse_english_reading_clb"
+      mapping:
+        "10-12": "10"
+        "9": "9"
+        "8": "8"
+        "7": "7"
+        "6": "6"
+        "5": "5"
+        "4": "4"
+        "M, 0-3": "0"
+  - key: english_celpip_writing_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_celpip_writing_score"
+        - "spouse_english_celpip_writing_score"
+      outputs: 
+        - "english_writing_clb"
+        - "spouse_english_writing_clb"
+      mapping:
+        "10-12": "10"
+        "9": "9"
+        "8": "8"
+        "7": "7"
+        "6": "6"
+        "5": "5"
+        "4": "4"
+        "M, 0-3": "0"
+  - key: english_ielts_speaking_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_ielts_speaking_score"
+        - "spouse_english_ielts_speaking_score"
+      outputs: 
+        - "english_speaking_clb"
+        - "spouse_english_speaking_clb"
+      mapping:
+        "7.5-9.0": "10"
+        "7.0": "9"
+        "6.5": "8"
+        "6.0": "7"
+        "5.5": "6"
+        "5.0": "5"
+        "4.0-4.5": "4"
+        "0-3.5": "0"
+  - key: english_ielts_listening_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_ielts_listening_score"
+        - "spouse_english_ielts_listening_score"
+      outputs: 
+        - "english_listening_clb"
+        - "spouse_english_listening_clb"
+      mapping:
+        "8.5-9.0": "10"
+        "8.0": "9"
+        "7.5": "8"
+        "6.0-7.0": "7"
+        "5.5": "6"
+        "5.0": "5"
+        "4.5": "4"
+        "0-4.0": "0"  
+  - key: english_ielts_reading_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_ielts_reading_score"
+        - "spouse_english_ielts_reading_score"
+      outputs: 
+        - "english_reading_clb"
+        - "spouse_english_reading_clb"
+      mapping:
+        "8.0-9.0": "10"
+        "7.0-7.5": "9"
+        "6.5": "8"
+        "6.0": "7"
+        "5.0-5.5": "6"
+        "4.0-4.5": "5"
+        "3.5": "4"
+        "0-3.0": "0"       
+  - key: english_ielts_writing_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_ielts_writing_score"
+        - "spouse_english_ielts_writing_score"
+      outputs: 
+        - "english_writing_clb"
+        - "spouse_english_writing_clb"
+      mapping:
+        "7.5-9.0": "10"
+        "7.0": "9"
+        "6.5": "8"
+        "6.0": "7"
+        "5.5": "6"
+        "5.0": "5"
+        "4.0-4.5": "4"
+        "0-3.5": "0"  
+  - key: english_pte_speaking_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_pte_speaking_score"
+        - "spouse_english_pte_speaking_score"
+      outputs: 
+        - "english_speaking_clb"
+        - "spouse_english_speaking_clb"
+      mapping:
+        "89-90": "10"
+        "84-88": "9"
+        "76-83": "8"
+        "68-75": "7"
+        "59-67": "6"
+        "51-58": "5"
+        "42-50": "4"
+        "0-41": "0"     
+  - key: english_pte_listening_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_pte_listening_score"
+        - "spouse_english_pte_listening_score"
+      outputs: 
+        - "english_listening_clb"
+        - "spouse_english_listening_clb"
+      mapping:
+        "89-90": "10"
+        "82-88": "9"
+        "71-81": "8"
+        "60-70": "7"
+        "50-59": "6"
+        "39-49": "5"
+        "28-38": "4"
+        "0-27": "0"     
+  - key: english_pte_reading_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_pte_reading_score"
+        - "spouse_english_pte_reading_score"
+      outputs: 
+        - "english_reading_clb"
+        - "spouse_english_reading_clb"
+      mapping:
+        "88-90": "10"
+        "78-87": "9"
+        "69-77": "8"
+        "60-68": "7"
+        "51-59": "6"
+        "42-50": "5"
+        "33-41": "4"
+        "0-32": "0"
+  - key: english_pte_writing_clb_translation
+    operation: map_values
+    config:
+      sources: 
+        - "english_pte_writing_score"
+        - "spouse_english_pte_writing_score"
+      outputs: 
+        - "english_writing_clb"
+        - "spouse_english_writing_clb"
+      mapping:
+        "90": "10"
+        "88-89": "9"
+        "79-87": "8"
+        "69-78": "7"
+        "60-68": "6"
+        "51-59": "5"
+        "41-50": "4"
+        "0-40": "0" 
+  - key: french_tef_speaking_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tef_speaking_score"
+        - "spouse_french_tef_speaking_score"
+      outputs: 
+        - "french_speaking_nclc"
+        - "spouse_french_speaking_nclc"
+      mapping:
+        "393-450": "10"
+        "371-392": "9"
+        "349-370": "8"
+        "310-348": "7"
+        "271-309": "6"
+        "226-270": "5"
+        "181-225": "4"
+        "0-180": "0"
+  - key: french_tef_listening_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tef_listening_score"
+        - "spouse_french_tef_listening_score"
+      outputs: 
+        - "french_listening_nclc"
+        - "spouse_french_listening_nclc"
+      mapping:
+        "316-360": "10"
+        "298-315": "9"
+        "280-297": "8"
+        "249-279": "7"
+        "217-248": "6"
+        "181-216": "5"
+        "145-180": "4"
+        "0-144": "0"
+  - key: french_tef_reading_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tef_reading_score"
+        - "spouse_french_tef_reading_score"
+      outputs: 
+        - "french_reading_nclc"
+        - "spouse_french_reading_nclc"
+      mapping:
+        "263-300": "10"
+        "248-262": "9"
+        "233-247": "8"
+        "207-232": "7"
+        "181-206": "6"
+        "151-180": "5"
+        "121-150": "4"
+        "0-120": "0"
+  - key: french_tef_writing_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tef_writing_score"
+        - "spouse_french_tef_writing_score"
+      outputs: 
+        - "french_writing_nclc"
+        - "spouse_french_writing_nclc"
+      mapping:
+        "393-450": "10"
+        "371-392": "9"
+        "349-370": "8"
+        "310-348": "7"
+        "271-309": "6"
+        "226-270": "5"
+        "181-225": "4"
+        "0-180": "0"
+  - key: french_tcf_speaking_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tcf_speaking_score"
+        - "spouse_french_tcf_speaking_score"
+      outputs: 
+        - "french_speaking_nclc"
+        - "spouse_french_speaking_nclc"
+      mapping:
+        "16-20": "10"
+        "14-15": "9"
+        "12-13": "8"
+        "10-11": "7"
+        "7-9": "6"
+        "6": "5"
+        "4-5": "4"
+        "0-3": "0"
+  - key: french_tcf_listening_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tcf_listening_score"
+        - "spouse_french_tcf_listening_score"
+      outputs: 
+        - "french_listening_nclc"
+        - "spouse_french_listening_nclc"
+      mapping:
+        "549-699": "10"
+        "523-548": "9"
+        "503-522": "8"
+        "458-502": "7"
+        "398-457": "6"
+        "369-397": "5"
+        "331-368": "4"
+        "0-330": "0"
+  - key: french_tcf_reading_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tcf_reading_score"
+        - "spouse_french_tcf_reading_score"
+      outputs: 
+        - "french_reading_nclc"
+        - "spouse_french_reading_nclc"
+      mapping:
+        "549-699": "10"
+        "524-548": "9"
+        "499-523": "8"
+        "453-498": "7"
+        "406-452": "6"
+        "375-405": "5"
+        "342-374": "4"
+        "0-341": "0"
+  - key: french_tcf_writing_nclc_translation
+    operation: map_values
+    config:
+      sources: 
+        - "french_tcf_writing_score"
+        - "spouse_french_tcf_writing_score"
+      outputs: 
+        - "french_writing_nclc"
+        - "spouse_french_writing_nclc"
+      mapping:
+        "16-20": "10"
+        "14-15": "9"
+        "12-13": "8"
+        "10-11": "7"
+        "7-9": "6"
+        "6": "5"
+        "4-5": "4"
+        "0-3": "0"
+  - key: lowest_english_score
+    operation: min
+    config:
+      sources:
+        - "english_speaking_clb"
+        - "english_listening_clb"
+        - "english_reading_clb"
+        - "english_writing_clb"
+      output: "english_lowest_clb"
+      fallback: "0"
+  - key: lowest_french_score
+    operation: min
+    config: 
+      sources:
+        - "french_speaking_nclc"
+        - "french_listening_nclc"
+        - "french_reading_nclc"
+        - "french_writing_nclc"
+      output: "french_lowest_nclc"
+      fallback: "0"
+
+  - key: spouse_highest_language_speaking_score
+    operation: max
+    config: 
+      sources:
+        - "spouse_english_speaking_clb"
+        - "spouse_french_speaking_nclc"
+      output: "spouse_language_speaking"
+      fallback: "0"
+  - key: spouse_highest_language_listening_score
+    operation: max
+    config: 
+      sources:
+        - "spouse_english_listening_clb"
+        - "spouse_french_listening_nclc"
+      output: "spouse_language_listening"
+      fallback: "0"
+  - key: spouse_highest_language_reading_score
+    operation: max
+    config: 
+      sources:
+        - "spouse_english_reading_clb"
+        - "spouse_french_reading_nclc"
+      output: "spouse_language_reading"
+      fallback: "0"
+  - key: spouse_highest_language_writing_score
+    operation: max
+    config: 
+      sources:
+        - "spouse_english_writing_clb"
+        - "spouse_french_writing_nclc"
+      output: "spouse_language_writing"
+      fallback: "0"
+
+  - key: primary_secondary_official_languages
+    operation: conditional_assignment
+    config:
+      if:
+        operation: gte
+        left: "english_lowest_clb"
+        right: "french_lowest_nclc"
+      then:
+        - source: "english_lowest_clb"
+          output: "first_official_language_lowest"
+        - source: "english_speaking_clb"
+          output: "first_official_language_speaking"
+        - source: "english_listening_clb"
+          output: "first_official_language_listening"
+        - source: "english_reading_clb"
+          output: "first_official_language_reading"
+        - source: "english_writing_clb"
+          output: "first_official_language_writing"        
+
+        - source: "french_lowest_nclc"
+          output: "second_official_language_lowest"
+        - source: "french_speaking_nclc"
+          output: "second_official_language_speaking"
+        - source: "french_listening_nclc"
+          output: "second_official_language_listening"
+        - source: "french_reading_nclc"
+          output: "second_official_language_reading"
+        - source: "french_writing_nclc"
+          output: "second_official_language_writing"  
+      else:
+        - source: "french_lowest_nclc"
+          output: "first_official_language_lowest"
+        - source: "french_speaking_nclc"
+          output: "first_official_language_speaking"
+        - source: "french_listening_nclc"
+          output: "first_official_language_listening"
+        - source: "french_reading_nclc"
+          output: "first_official_language_reading"
+        - source: "french_writing_nclc"
+          output: "first_official_language_writing"  
+
+        - source: "english_lowest_clb"
+          output: "second_official_language_lowest"
+        - source: "english_speaking_clb"
+          output: "second_official_language_speaking"
+        - source: "english_listening_clb"
+          output: "second_official_language_listening"
+        - source: "english_reading_clb"
+          output: "second_official_language_reading"
+        - source: "english_writing_clb"
+          output: "second_official_language_writing"  
+    
+---
+# Evaluation rules for Canada CRS
+eval:
+  - key: core_human_capital_factors
+    sub:
+      - key: age
+        clauses: 
+        - if: 
+            age: "17-"
+          score: 0
+        - if:
+            age: "18"
+            with_spouse: "yes"
+          score: 99
+        - if:
+            age: "18"
+            with_spouse: "no"
+          score: 90
+        - if:
+            age: "19"
+            with_spouse: "yes"
+          score: 95
+        - if:
+            age: "19"
+            with_spouse: "no"
+          score: 105
+        - if:
+            age: "20-29"
+            with_spouse: "yes"
+          score: 100
+        - if:
+            age: "20-29"
+            with_spouse: "no"
+          score: 110
+        - if:
+            age: "30"
+            with_spouse: "yes"
+          score: 95
+        - if:
+            age: "30"
+            with_spouse: "no"
+          score: 105
+        - if:
+            age: "31"
+            with_spouse: "yes"
+          score: 90
+        - if:
+            age: "31"
+            with_spouse: "no"
+          score: 99
+        - if:
+            age: "32"
+            with_spouse: "yes"
+          score: 85
+        - if:
+            age: "32"
+            with_spouse: "no"
+          score: 94
+        - if:
+            age: "33"
+            with_spouse: "yes"
+          score: 80
+        - if:
+            age: "33"
+            with_spouse: "no"
+          score: 88
+        - if:
+            age: "34"
+            with_spouse: "yes"
+          score: 75
+        - if:
+            age: "34"
+            with_spouse: "no"
+          score: 83
+        - if:
+            age: "35"
+            with_spouse: "yes"
+          score: 70
+        - if:
+            age: "35"
+            with_spouse: "no"
+          score: 77
+        - if:
+            age: "36"
+            with_spouse: "yes"
+          score: 65
+        - if:
+            age: "36"
+            with_spouse: "no"
+          score: 72
+        - if:
+            age: "37"
+            with_spouse: "yes"
+          score: 60
+        - if:
+            age: "37"
+            with_spouse: "no"
+          score: 66
+        - if:
+            age: "38"
+            with_spouse: "yes"
+          score: 55
+        - if:
+            age: "38"
+            with_spouse: "no"
+          score: 61
+        - if:
+            age: "39"
+            with_spouse: "yes"
+          score: 50
+        - if:
+            age: "39"
+            with_spouse: "no"
+          score: 55
+        - if:
+            age: "40"
+            with_spouse: "yes"
+          score: 45
+        - if:
+            age: "40"
+            with_spouse: "no"
+          score: 50
+        - if:
+            age: "41"
+            with_spouse: "yes"
+          score: 35
+        - if:
+            age: "41"
+            with_spouse: "no"
+          score: 39
+        - if:
+            age: "42"
+            with_spouse: "yes"
+          score: 25
+        - if:
+            age: "42"
+            with_spouse: "no"
+          score: 28
+        - if:
+            age: "43"
+            with_spouse: "yes"
+          score: 15
+        - if:
+            age: "43"
+            with_spouse: "no"
+          score: 17
+        - if:
+            age: "44"
+            with_spouse: "yes"
+          score: 5
+        - if:
+            age: "44"
+            with_spouse: "no"
+          score: 6
+        - if:
+            age: "45+"
+          score: 0  
+      - key: education_level
+        clauses: 
+        - if: 
+            education: "less_than_high_school"
+          score: 0
+        - if:
+            education: "secondary"
+            with_spouse: "yes"
+          score: 28
+        - if:
+            education: "secondary"
+            with_spouse: "no"
+          score: 30
+        - if:
+            education: "one_year_college_degree"
+            with_spouse: "yes"
+          score: 84
+        - if:
+            education: "one_year_college_degree"
+            with_spouse: "no"
+          score: 90    
+        - if:
+            education: "two_year_college_program"
+            with_spouse: "yes"
+          score: 91
+        - if:
+            education: "two_year_college_program"
+            with_spouse: "no"
+          score: 98
+        - if:
+            education: "bachelor_or_three_year_program"
+            with_spouse: "yes"
+          score: 112
+        - if:
+            education: "bachelor_or_three_year_program"
+            with_spouse: "no"
+          score: 120
+        - if:
+            education: "multiple_degrees"
+            with_spouse: "yes"
+          score: 119
+        - if:
+            education: "multiple_degrees"
+            with_spouse: "no"
+          score: 128
+        - if:
+            education: "master_or_professional_degree"
+            with_spouse: "yes"
+          score: 126
+        - if:
+            education: "master_or_professional_degree"
+            with_spouse: "no"
+          score: 135
+        - if:
+            education: "doctor"
+            with_spouse: "yes"
+          score: 140
+        - if:
+            education: "doctor"
+            with_spouse: "no"
+          score: 150
+      - key: first_official_language
+        aggregate: true
+        sub:
+          - key: first_official_language_aspect
+            template:
+              find: "first_official_language_aspect"
+              replace: "aspect"
+              with:
+                - "speaking" 
+                - "writing"
+                - "reading"
+                - "listening"
+            clauses:
+              - if:
+                  first_official_language_aspect: "0"
+                score: 0
+              - if: 
+                  first_official_language_aspect:
+                    - "4"
+                    - "5"
+                score: 6
+              - if: 
+                  first_official_language_aspect: "6"
+                  with_spouse: "yes"
+                score: 8
+              - if: 
+                  first_official_language_aspect: "6"
+                  with_spouse: "no"
+                score: 9
+              - if: 
+                  first_official_language_aspect: "7"
+                  with_spouse: "yes"
+                score: 16
+              - if: 
+                  first_official_language_aspect: "7"
+                  with_spouse: "no"
+                score: 17
+              - if: 
+                  first_official_language_aspect: "8"
+                  with_spouse: "yes"
+                score: 22
+              - if: 
+                  first_official_language_aspect: "8"
+                  with_spouse: "no"
+                score: 23
+              - if: 
+                  first_official_language_aspect: "9"
+                  with_spouse: "yes"
+                score: 29
+              - if: 
+                  first_official_language_aspect: "9"
+                  with_spouse: "no"
+                score: 31
+              - if: 
+                  first_official_language_aspect: "10"
+                  with_spouse: "yes"
+                score: 32
+              - if: 
+                  first_official_language_aspect: "10"
+                  with_spouse: "no"
+                score: 34
+      - key: second_official_language
+        aggregate: true
+        sub:
+          - key: second_official_language_aspect
+            template:
+              find: second_official_language_aspect
+              replace: aspect
+              with:
+                - "speaking" 
+                - "writing"
+                - "reading"
+                - "listening"
+            clauses:
+              - if: 
+                  second_official_language_aspect:
+                    - "0"
+                    - "4"
+                score: 0
+              - if: 
+                  second_official_language_aspect: 
+                    - "5"
+                    - "6"
+                score: 1
+              - if: 
+                  second_official_language_aspect: 
+                    - "7"
+                    - "8"
+                score: 3
+              - if: 
+                  second_official_language_aspect: 
+                    - "9"
+                    - "10"
+                score: 6
+      - key: canadian_experience
+        clauses:
+          - if:
+              canadian_experience: "<1"
+            score: 0
+          - if:
+              canadian_experience: "1"
+              with_spouse: "yes"
+            score: 35
+          - if:
+              canadian_experience: "1"
+              with_spouse: "no"
+            score: 40
+          - if:
+              canadian_experience: "2"
+              with_spouse: "yes"
+            score: 46
+          - if:
+              canadian_experience: "2"
+              with_spouse: "no"
+            score: 53
+          - if:
+              canadian_experience: "3"
+              with_spouse: "yes"
+            score: 56
+          - if:
+              canadian_experience: "3"
+              with_spouse: "no"
+            score: 64
+          - if:
+              canadian_experience: "4"
+              with_spouse: "yes"
+            score: 63
+          - if:
+              canadian_experience: "4"
+              with_spouse: "no"
+            score: 72
+          - if:
+              canadian_experience: "5+"
+              with_spouse: "yes"
+            score: 70
+          - if:
+              canadian_experience: "5+"
+              with_spouse: "no"
+            score: 80   
+  - key: spouse_factors
+    sub:
+    - key: spouse_education
+      clauses:
+        - if:
+            spouse_education: "less_than_high_school"
+          score: 0
+        - if:
+            spouse_education: "secondary"
+          score: 2
+        - if:
+            spouse_education: "one_year_college_degree"
+          score: 6
+        - if:
+            spouse_education: "two_year_college_program"
+          score: 7
+        - if:
+            spouse_education: "bachelor_or_three_year_program"
+          score: 8
+        - if:
+            spouse_education: "multiple_degrees"
+          score: 9
+        - if:
+            spouse_education: "master_or_professional_degree"
+          score: 10
+        - if:
+            spouse_education: "doctor"
+          score: 10
+    - key: spouse_language
+      aggregate: true
+      sub:
+        - key: spouse_language_aspect
+          template:
+            find: spouse_language_aspect
+            replace: aspect
+            with:
+              - speaking
+              - listening
+              - reading
+              - writing
+          clauses:
+            - if:
+                spouse_language_aspect: 
+                  - "0"
+                  - "4"
+              score: 0
+            - if:
+                spouse_language_aspect: 
+                  - "5"
+                  - "6"
+              score: 1
+            - if:
+                spouse_language_aspect: 
+                  - "7"
+                  - "8"
+              score: 3
+            - if:
+                spouse_language_aspect: 
+                  - "9"
+                  - "10"
+              score: 5           
+    - key: spouse_canadian_experience
+      clauses:
+        - if:
+            spouse_canadian_experience: "<1"
+          score: 0
+        - if:
+            spouse_canadian_experience: "1"
+          score: 5
+        - if:
+            spouse_canadian_experience: "2"
+          score: 7 
+        - if:
+            spouse_canadian_experience: "3"
+          score: 8 
+        - if:
+            spouse_canadian_experience: "4"
+          score: 9
+        - if:
+            spouse_canadian_experience: "5+"
+          score: 10
+  - key: skill_transferability_factors
+    max: 100
+    sub:
+    - key: education
+      max: 50
+      sub:
+      - key: education.language_proficiency
+        clauses:
+          - if:
+              education: 
+                - "less_than_high_school"
+                - "secondary"
+            score: 0
+          - if:
+              education: 
+                - "one_year_college_degree"
+                - "two_year_college_program"
+                - "bachelor_or_three_year_program"
+              first_official_language_lowest:
+                - "7"
+                - "8"
+            score: 13
+          - if:
+              education: 
+                - "multiple_degrees"
+                - "master_or_professional_degree"
+                - "doctor"
+              first_official_language_lowest:
+                - "7"
+                - "8"
+            score: 25
+          - if:
+              education: 
+                - "one_year_college_degree"
+                - "two_year_college_program"
+                - "bachelor_or_three_year_program"
+              first_official_language_lowest:
+                - "9"
+                - "10"
+            score: 25
+          - if:
+              education: 
+                - "multiple_degrees"
+                - "master_or_professional_degree"
+                - "doctor"
+              first_official_language_lowest:
+                - "9"
+                - "10"
+            score: 50
+      - key: education.canadian_experience
+        clauses:
+          - if:
+              education: 
+                - "less_than_high_school"
+                - "secondary"
+            score: 0
+          - if:
+              education: 
+                - "one_year_college_degree"
+                - "two_year_college_program"
+                - "bachelor_or_three_year_program"
+              canadian_experience: "1"
+            score: 13
+          - if:
+              education: 
+                - "multiple_degrees"
+                - "master_or_professional_degree"
+                - "doctor"
+              canadian_experience: "1"
+            score: 25
+          - if:
+              education: 
+                - "one_year_college_degree"
+                - "two_year_college_program"
+                - "bachelor_or_three_year_program"
+              canadian_experience: 
+                - "2"
+                - "3"
+                - "4"
+                - "5+"
+            score: 25
+          - if:
+              education: 
+                - "multiple_degrees"
+                - "master_or_professional_degree"
+                - "doctor"
+              canadian_experience: 
+                - "2"
+                - "3"
+                - "4"
+                - "5+"
+            score: 50
+    - key: foreign_experience
+      max: 50
+      sub:
+      - key: foreign_experience.language_proficiency
+        clauses:
+          - if:
+              foreign_experience: "<1"
+            score: 0
+          - if:
+              foreign_experience: 
+                - "1-2"
+              first_official_language_lowest:
+                - "7"
+                - "8"
+            score: 13
+          - if:
+              foreign_experience: 
+                - "3+"
+              first_official_language_lowest:
+                - "7"
+                - "8"
+            score: 25
+          - if:
+              foreign_experience: 
+                - "1-2"
+              first_official_language_lowest:
+                - "9"
+                - "10"
+            score: 25
+          - if:
+              foreign_experience: 
+                - "3+"
+              first_official_language_lowest:
+                - "9"
+                - "10"
+            score: 50          
+      - key: foreign_experience.canadian_experience
+        clauses:
+          - if:
+              foreign_experience: "<1"
+            score: 0
+          - if:
+              foreign_experience: "1-2"
+              canadian_experience: "1"
+            score: 13
+          - if:
+              foreign_experience: "3+"
+              canadian_experience: "1"
+            score: 25
+          - if:
+              foreign_experience: "1-2"
+              canadian_experience: 
+                - "2"
+                - "3"
+                - "4"
+                - "5+"
+            score: 25
+          - if:
+              foreign_experience: "3+"
+              canadian_experience: 
+                - "2"
+                - "3"
+                - "4"
+                - "5+"
+            score: 50
+    - key: certificate_of_qualification
+      clauses:
+        - if:
+            certificate_of_qualification: "no"
+          score: 0
+        - if:
+            certificate_of_qualification: "yes"
+            first_official_language_lowest:
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+          score: 0
+        - if:
+            certificate_of_qualification: "yes"
+            first_official_language_lowest:
+              - "5"
+              - "6"
+          score: 25
+        - if:
+            certificate_of_qualification: "yes"
+            first_official_language_lowest:
+              - "7"
+              - "8"
+              - "9"
+              - "10"
+          score: 50
+
+  - key: additional_points
+    max: 600
+    sub:
+    - key: with_siblings
+      clauses:
+        - if:
+            with_siblings: "yes"
+          score: 15
+    - key: french_language_skills
+      clauses:
+        - if:
+            "french_lowest_nclc": 
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+          score: 0
+        - if:
+            "french_lowest_nclc": 
+              - "7"
+              - "8"
+              - "9"
+              - "10"
+            "english_lowest_clb":
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+          score: 25
+        - if:
+            "french_lowest_nclc": 
+              - "7"
+              - "8"
+              - "9"
+              - "10"
+            "english_lowest_clb":
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+              - "10"
+          score: 50       
+    - key: post_secondary_education_in_canada
+      clauses:
+        - if:
+            post_secondary_education_in_canada: "1-2"
+          score: 15
+        - if:
+            post_secondary_education_in_canada: "3+"
+          score: 30
+    - key: with_pnp
+      clauses:
+        - if:
+            with_pnp: "yes"
+          score: 600
+`;export{e as default};
