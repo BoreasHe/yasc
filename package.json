@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "repository": "https://github.com/boreashe/yasc",
   "homepage": "https://boreashe.github.io/yasc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite dev --host",

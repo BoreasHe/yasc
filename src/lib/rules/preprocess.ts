@@ -1,14 +1,18 @@
 import type { ProfileFormData } from "@/App";
+import { evalBasis, searchRuleSetEvalForBasis } from "./eval";
 import type {
-  MapValuesConfig,
-  MinConfig,
+  CommonReduceConfig,
   ConditionalAssignmentConfig,
+  MapValuesConfig,
+  RuleSetEvalCriterion,
   RuleSetPreprocess,
+  SimulationConfig,
 } from "./rule.types";
 
 export const preprocessFormData = (
   form: ProfileFormData,
-  preprocess: RuleSetPreprocess[]
+  preprocess: RuleSetPreprocess[],
+  evalConfig: RuleSetEvalCriterion[],
 ): ProfileFormData => {
   let result = { ...form };
   for (const pipeline of preprocess) {
@@ -25,6 +29,12 @@ export const preprocessFormData = (
       case "conditional_assignment":
         result = conditionalAssignment(result, pipeline.config);
         break;
+      case "simulation":
+        result = simulation(result, pipeline.config, evalConfig);
+        break;
+      case "sum":
+        result = reduceFn(result, pipeline.config, "sum");
+        break;
     }
   }
 
@@ -33,7 +43,7 @@ export const preprocessFormData = (
 
 function mapValues(
   form: ProfileFormData,
-  config: MapValuesConfig["config"]
+  config: MapValuesConfig["config"],
 ): ProfileFormData {
   const result = { ...form };
 
@@ -42,7 +52,7 @@ function mapValues(
 
   if (bothIsArray && config.sources.length !== config.outputs.length) {
     console.warn(
-      `Source ${config.sources} or ${config.outputs} length mismatch, can't calculate map_values. Skipping.`
+      `Source ${config.sources} or ${config.outputs} length mismatch, can't calculate map_values. Skipping.`,
     );
     return result;
   }
@@ -81,37 +91,40 @@ function mapValues(
 
 function reduceFn(
   form: ProfileFormData,
-  config: MinConfig["config"],
-  method: "min" | "max" | "sum"
+  config: CommonReduceConfig,
+  method: "min" | "max" | "sum",
 ): ProfileFormData {
   const result = { ...form };
   const sources = config.sources.map((source) => form[source]);
 
   if (config.fallback !== undefined && sources.length > 0) {
     const numberizedSource = sources.map((source) =>
-      Number.isNaN(Number(source)) ? Number(config.fallback) : source
+      Number.isNaN(Number(source)) ? Number(config.fallback) : source,
     );
 
-    const num = numberizedSource.reduce((a, b) => {
-      if (a === null) return b;
+    const num = numberizedSource.reduce(
+      (a, b) => {
+        if (a === null) return b;
 
-      let n = 0;
-      const aNum = Number(a);
-      const bNum = Number(b);
-      switch (method) {
-        case "min":
-          n = aNum < bNum ? aNum : bNum;
-          break;
-        case "max":
-          n = aNum > bNum ? aNum : bNum;
-          break;
-        case "sum":
-          n = aNum + bNum;
-          break;
-      }
+        let n = 0;
+        const aNum = Number(a);
+        const bNum = Number(b);
+        switch (method) {
+          case "min":
+            n = aNum < bNum ? aNum : bNum;
+            break;
+          case "max":
+            n = aNum > bNum ? aNum : bNum;
+            break;
+          case "sum":
+            n = aNum + bNum;
+            break;
+        }
 
-      return n;
-    }, null as number | null);
+        return n;
+      },
+      null as number | null,
+    );
 
     // num is guaranteed to be a number at this point
     result[config.output] = num!.toString();
@@ -131,23 +144,39 @@ function reduceFn(
 
 function conditionalAssignment(
   form: ProfileFormData,
-  config: ConditionalAssignmentConfig["config"]
+  config: ConditionalAssignmentConfig["config"],
 ): ProfileFormData {
   const result = { ...form };
 
   let conditionMet = false;
-  const left = form[config.if.left];
-  const right = form[config.if.right];
+  let _left = form[config.if.left];
+  let _right = form[config.if.right];
 
-  if (left === undefined || right === undefined) {
+  if (_left === undefined) {
+    _left = "0";
     console.warn(
-      `Source ${config.if.left} or ${config.if.right} not found in form while preprocessing conditional_assignment. Skipping.`
+      `Source ${config.if.left} not found in form while preprocessing conditional_assignment. Will use 0 as fallback.`,
+    );
+  }
+
+  if (_right === undefined) {
+    _right = "0";
+    console.warn(
+      `Source ${config.if.right} not found in form while preprocessing conditional_assignment. Will use 0 as fallback.`,
+    );
+  }
+
+  const left = Number(_left);
+  const right = Number(_right);
+
+  const bothAreNumbers = !Number.isNaN(left) && !Number.isNaN(right);
+
+  if (!bothAreNumbers) {
+    console.warn(
+      `Source ${config.if.left} or ${config.if.right} is not a number, can't calculate. Skipping.`,
     );
     return result;
   }
-
-  const bothAreNumbers =
-    !Number.isNaN(Number(left)) && !Number.isNaN(Number(right));
 
   switch (config.if.operation) {
     case "eq":
@@ -157,7 +186,7 @@ function conditionalAssignment(
       conditionMet = form[config.if.left] !== config.if.right;
       break;
     case "gt":
-      if (bothAreNumbers && left !== null && right !== null) {
+      if (left !== null && right !== null) {
         conditionMet = left > right;
       } else {
         // console.warn(
@@ -167,7 +196,7 @@ function conditionalAssignment(
       }
       break;
     case "gte":
-      if (bothAreNumbers && left !== null && right !== null) {
+      if (left !== null && right !== null) {
         conditionMet = left >= right;
       } else {
         // console.warn(
@@ -177,7 +206,7 @@ function conditionalAssignment(
       }
       break;
     case "lt":
-      if (bothAreNumbers && left !== null && right !== null) {
+      if (left !== null && right !== null) {
         conditionMet = left < right;
       } else {
         // console.warn(
@@ -187,7 +216,7 @@ function conditionalAssignment(
       }
       break;
     case "lte":
-      if (bothAreNumbers && left !== null && right !== null) {
+      if (left !== null && right !== null) {
         conditionMet = left <= right;
       } else {
         // console.warn(
@@ -210,6 +239,47 @@ function conditionalAssignment(
       result[elseClause.output] = result[elseClause.source];
     }
   }
+
+  return result;
+}
+
+function simulation(
+  form: ProfileFormData,
+  config: SimulationConfig["config"],
+  evalConfig: RuleSetEvalCriterion[],
+): ProfileFormData {
+  const result = { ...form };
+
+  // Find the rule definition for the evaluation rule for this specific simulation
+  const ruleDefinition = searchRuleSetEvalForBasis(
+    config.eval_rule.split(":"),
+    evalConfig,
+  );
+
+  if (!ruleDefinition) {
+    console.warn(`Rule definition not found for path: ${config.eval_rule}`);
+    throw new Error(
+      `Rule definition not found for path: ${config.eval_rule} when evaluating simulation in preprocess`,
+    );
+  }
+
+  const mockBasis = {
+    key: config.eval_rule,
+    clauses: ruleDefinition.clauses,
+  };
+
+  // Create a mock slice of the form for the simulation
+  // The input `source` value can be a customized value, not necessarily from a field in the form
+  // The `as` field has to match the specified key in the eval rule's basis
+  const sources: Record<string, any> = {};
+  for (const source of config.sources) {
+    sources[source.as] = result[source.source];
+  }
+
+  const { score } = evalBasis(mockBasis, sources);
+
+  // Store the simulation result in the form as specified in the config
+  result[config.output] = score.toString();
 
   return result;
 }

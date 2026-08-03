@@ -31,7 +31,7 @@ export type NodeMap = Record<string, Node>;
 
 export function computeScore(
   rule: RuleSet,
-  formData: ProfileFormData
+  formData: ProfileFormData,
 ): ScoringTable {
   const evalRules = rule.eval;
 
@@ -70,7 +70,7 @@ function buildCriterionNode(
   criterion: RuleSetEvalCriterion,
   formData: ProfileFormData,
   levelStack: string[],
-  evalRules: RuleSetEval[]
+  evalRules: RuleSetEval[],
 ) {
   const newLevelStack = [...levelStack];
   newLevelStack.push(criterion.key);
@@ -91,27 +91,30 @@ function buildCriterionNode(
           // Replace the template key with the actual key
           const newTemplateKey = subCriterion.key.replace(
             template.replace,
-            templateCopy
+            templateCopy,
           );
 
           // Replace the inner if conditions' keys
-          const newClauses = subCriterion.clauses.reduce((acc, next) => {
-            const newIf = Object.entries(next.if).reduce(
-              (acc, [key, value]) => {
-                const newKey = key.replace(template.replace, templateCopy);
-                acc[newKey] = value;
-                return acc;
-              },
-              {} as Record<string, ClauseCondition[]>
-            );
+          const newClauses = subCriterion.clauses.reduce(
+            (acc, next) => {
+              const newIf = Object.entries(next.if).reduce(
+                (acc, [key, value]) => {
+                  const newKey = key.replace(template.replace, templateCopy);
+                  acc[newKey] = value;
+                  return acc;
+                },
+                {} as Record<string, ClauseCondition[]>,
+              );
 
-            acc.push({
-              ...next,
-              if: newIf,
-            });
+              acc.push({
+                ...next,
+                if: newIf,
+              });
 
-            return acc;
-          }, [] as ClausesDefinition["clauses"]);
+              return acc;
+            },
+            [] as ClausesDefinition["clauses"],
+          );
 
           derivedSubCriterion.push({
             ...subCriterion,
@@ -128,7 +131,7 @@ function buildCriterionNode(
           derived,
           formData,
           newLevelStack,
-          evalRules
+          evalRules,
         );
 
         if (node.dependencies !== undefined) {
@@ -179,9 +182,9 @@ function buildCriterionNode(
   }
 }
 
-function searchRuleSetEvalForBasis(
+export function searchRuleSetEvalForBasis(
   fullKey: string[],
-  criteria: RuleSetEvalCriterion[]
+  criteria: RuleSetEvalCriterion[],
 ): ClausesDefinition | null {
   const targetKey = fullKey.shift();
 
@@ -204,7 +207,7 @@ function searchRuleSetEvalForBasis(
 
   if ("use" in criterion) {
     throw new Error(
-      `Multiple level of referencing not supported in searchRuleSetEvalForBasis`
+      `Multiple level of referencing not supported in searchRuleSetEvalForBasis`,
     );
   }
 
@@ -217,9 +220,9 @@ interface Basis {
   clauses: { if: Record<string, ClauseCondition[]>; score: number }[];
 }
 
-function evalBasis(
+export function evalBasis(
   basis: Basis,
-  formData: ProfileFormData
+  formData: ProfileFormData,
 ): {
   score: number;
   dependencies: Set<string>;
@@ -241,7 +244,7 @@ function evalBasis(
 
           // Otherwise compare it directly to the value
           return formData[fieldName] === targetValue;
-        }
+        },
       );
 
       if (allConditionsMet) {
@@ -250,7 +253,7 @@ function evalBasis(
     } catch (e) {
       console.error(
         `Error occurred while evaluating condition ${basis.key}:`,
-        e
+        e,
       );
       return { score: 0, dependencies };
     }

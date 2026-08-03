@@ -20,7 +20,9 @@ export function AppInfo({ className }: { className?: string }) {
         </a>
         . Licensed under AGPL v3. Made with ☕
       </div>
-      <div className="text-[10px] text-muted-foreground/50">v1.0</div>
+      <div className="text-[10px] text-muted-foreground/50">
+        v{import.meta.env.APP_VERSION}
+      </div>
     </div>
   );
 }

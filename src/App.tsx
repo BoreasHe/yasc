@@ -36,8 +36,16 @@ function App() {
   const formValues = form.watch();
 
   const preprocessedFormData = useMemo(() => {
-    return preprocessFormData(formValues, currentRule?.preprocess || []);
-  }, [formValues, currentRule?.preprocess]);
+    if (!currentRule) {
+      return {};
+    }
+
+    return preprocessFormData(
+      formValues,
+      currentRule.preprocess || [],
+      currentRule.eval!,
+    );
+  }, [formValues, currentRule]);
 
   const Layout = mobile ? MobileLayout : DesktopLayout;
 

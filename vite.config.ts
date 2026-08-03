@@ -13,6 +13,11 @@ export default defineConfig(({ command }) => {
     staged: {
       "*": "vp check --fix",
     },
+    define: {
+      "import.meta.env.APP_VERSION": JSON.stringify(
+        process.env.npm_package_version,
+      ),
+    },
     plugins: [
       react(),
       tailwindcss(),

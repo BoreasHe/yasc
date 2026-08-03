@@ -33,13 +33,22 @@ const preprocessOperations = [
   "min",
   "max",
   "conditional_assignment",
+  "simulation",
+  "sum",
 ] as const;
 
 type PreprocessOperation = (typeof preprocessOperations)[number];
 
 export type RuleSetPreprocess = {
   key: string;
-} & (MapValuesConfig | MinConfig | MaxConfig | ConditionalAssignmentConfig);
+} & (
+  | MapValuesConfig
+  | MinConfig
+  | MaxConfig
+  | ConditionalAssignmentConfig
+  | SimulationConfig
+  | SumConfig
+);
 
 export interface MapValuesConfig {
   operation: "map_values";
@@ -52,22 +61,27 @@ export interface MapValuesConfig {
 
 export interface MinConfig {
   operation: "min";
-  config: {
-    sources: string[];
-    output: string;
+  config: CommonReduceConfig & {
     min: number;
-    fallback?: string;
   };
 }
 
 export interface MaxConfig {
   operation: "max";
-  config: {
-    sources: string[];
-    output: string;
-    min: number;
-    fallback?: string;
+  config: CommonReduceConfig & {
+    max: number;
   };
+}
+
+export interface SumConfig {
+  operation: "sum";
+  config: CommonReduceConfig;
+}
+
+export interface CommonReduceConfig {
+  sources: string[];
+  output: string;
+  fallback?: string;
 }
 
 type Operator = "eq" | "neq" | "gt" | "gte" | "lt" | "lte";
@@ -88,6 +102,18 @@ export interface ConditionalAssignmentConfig {
       source: string;
       output: string;
     }[];
+  };
+}
+
+export interface SimulationConfig {
+  operation: "simulation";
+  config: {
+    sources: {
+      source: string;
+      as: string;
+    }[];
+    eval_rule: string;
+    output: string;
   };
 }
 
