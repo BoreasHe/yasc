@@ -900,37 +900,115 @@ preprocess:
       output: "french_lowest_nclc"
       fallback: "0"
 
-  - key: spouse_highest_language_speaking_score
-    operation: max
-    config: 
+  # Language Score Simulation: Find out whether English or French is the first official language spoken
+  - key: english_speaking_score_simulation
+    operation: simulation
+    config:
       sources:
-        - "spouse_english_speaking_clb"
-        - "spouse_french_speaking_nclc"
-      output: "spouse_language_speaking"
+        - source: "english_speaking_clb"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "english_speaking_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: english_listening_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "english_listening_clb"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "english_listening_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: english_reading_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "english_reading_clb"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "english_reading_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: english_writing_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "english_writing_clb"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "english_writing_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: french_speaking_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "french_speaking_nclc"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "french_speaking_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: french_listening_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "french_listening_nclc"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "french_listening_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: french_reading_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "french_reading_nclc"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "french_reading_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: french_writing_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "french_writing_nclc"
+          as: "first_official_language_aspect"
+        - source: "with_spouse"
+          as: "with_spouse"
+      output: "french_writing_score_simulation"
+      eval_rule: "core_human_capital_factors:first_official_language:first_official_language_aspect"
+
+  - key: english_simulated_total_score
+    operation: sum
+    config:
+      sources:
+        - "english_speaking_score_simulation"
+        - "english_listening_score_simulation"
+        - "english_reading_score_simulation"
+        - "english_writing_score_simulation"
+      output: "english_simulated_total_score"
       fallback: "0"
-  - key: spouse_highest_language_listening_score
-    operation: max
-    config: 
+
+  - key: french_simulated_total_score
+    operation: sum
+    config:
       sources:
-        - "spouse_english_listening_clb"
-        - "spouse_french_listening_nclc"
-      output: "spouse_language_listening"
-      fallback: "0"
-  - key: spouse_highest_language_reading_score
-    operation: max
-    config: 
-      sources:
-        - "spouse_english_reading_clb"
-        - "spouse_french_reading_nclc"
-      output: "spouse_language_reading"
-      fallback: "0"
-  - key: spouse_highest_language_writing_score
-    operation: max
-    config: 
-      sources:
-        - "spouse_english_writing_clb"
-        - "spouse_french_writing_nclc"
-      output: "spouse_language_writing"
+        - "french_speaking_score_simulation"
+        - "french_listening_score_simulation"
+        - "french_reading_score_simulation"
+        - "french_writing_score_simulation"
+      output: "french_simulated_total_score"
       fallback: "0"
 
   - key: primary_secondary_official_languages
@@ -938,8 +1016,8 @@ preprocess:
     config:
       if:
         operation: gte
-        left: "english_lowest_clb"
-        right: "french_lowest_nclc"
+        left: "english_simulated_total_score"
+        right: "french_simulated_total_score"
       then:
         - source: "english_lowest_clb"
           output: "first_official_language_lowest"
@@ -983,7 +1061,127 @@ preprocess:
         - source: "english_reading_clb"
           output: "second_official_language_reading"
         - source: "english_writing_clb"
-          output: "second_official_language_writing"  
+          output: "second_official_language_writing"
+
+  # Spouse
+  - key: spouse_english_speaking_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_english_speaking_clb"
+          as: "spouse_language_aspect"
+      output: "spouse_english_speaking_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_english_listening_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_english_listening_clb"
+          as: "spouse_language_aspect"
+      output: "spouse_english_listening_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_english_reading_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_english_reading_clb"
+          as: "spouse_language_aspect"
+      output: "spouse_english_reading_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_english_writing_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_english_writing_clb"
+          as: "spouse_language_aspect"
+      output: "spouse_english_writing_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_french_speaking_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_french_speaking_nclc"
+          as: "spouse_language_aspect"
+      output: "spouse_french_speaking_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_french_listening_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_french_listening_nclc"
+          as: "spouse_language_aspect"
+      output: "spouse_french_listening_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_french_reading_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_french_reading_nclc"
+          as: "spouse_language_aspect"
+      output: "spouse_french_reading_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_french_writing_score_simulation
+    operation: simulation
+    config:
+      sources:
+        - source: "spouse_french_writing_nclc"
+          as: "spouse_language_aspect"
+      output: "spouse_french_writing_score_simulation"
+      eval_rule: "spouse_factors:spouse_language:spouse_language_aspect"
+
+  - key: spouse_english_simulated_total_score
+    operation: sum
+    config:
+      sources:
+        - source: "spouse_english_speaking_score_simulation"
+        - source: "spouse_english_listening_score_simulation"
+        - source: "spouse_english_reading_score_simulation"
+        - source: "spouse_english_writing_score_simulation"
+      output: "spouse_english_simulated_total_score"
+
+  - key: spouse_french_simulated_total_score
+    operation: sum
+    config:
+      sources:
+        - source: "spouse_french_speaking_score_simulation"
+        - source: "spouse_french_listening_score_simulation"
+        - source: "spouse_french_reading_score_simulation"
+        - source: "spouse_french_writing_score_simulation"
+      output: "spouse_french_simulated_total_score"
+  
+  - key: spouse_first_official_language
+    operation: conditional_assignment
+    config:
+      if:
+        operation: gte
+        left: "spouse_english_simulated_total_score"
+        right: "spouse_french_simulated_total_score"
+      then:
+        - source: "spouse_english_speaking_clb"
+          output: "spouse_language_speaking"
+        - source: "spouse_english_listening_clb"
+          output: "spouse_language_listening"
+        - source: "spouse_english_reading_clb"
+          output: "spouse_language_reading"
+        - source: "spouse_english_writing_clb"
+          output: "spouse_language_writing"
+      else:
+        - source: "spouse_french_speaking_nclc"
+          output: "spouse_language_speaking"
+        - source: "spouse_french_listening_nclc"
+          output: "spouse_language_listening"
+        - source: "spouse_french_reading_nclc"
+          output: "spouse_language_reading"
+        - source: "spouse_french_writing_nclc"
+          output: "spouse_language_writing"
+
     
 ---
 # Evaluation rules for Canada CRS
